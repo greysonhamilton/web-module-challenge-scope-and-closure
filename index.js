@@ -28,9 +28,9 @@ function processFirstItem(stringList, callback) {
  * 
  * 1. What is the difference between counter1 and counter2?
  * 
- * 2. Which of the two uses a closure? How can you tell?
+ * 2. Which of the two uses a closure? How can you tell? 
  * 
- * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? counter1
  *
 */
 
@@ -56,19 +56,19 @@ function counter2() {
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
+function inning() {
 
-    /*Code Here*/
+    return Math.floor(Math.random() * 3);
 
-}
+} console.log(inning());
 
-/* Task 3: finalScore()
+/* Task 3: getInningScore()
 
-Write a higher order function called `finalScore` that accepts the callback function `inning` (from above) and a number of innings and and returns the final score of the game in the form of an object.
+Write a higher order function called `getInningScore` that accepts the callback function `inning` (from above) and a number of innings and and returns the final score of the game in the form of an object.
 
 For example, 
 
-finalScore(inning, 9) might return: 
+getInningScore(inning, 9) might return: 
 {
   "Home": 11,
   "Away": 5,
@@ -76,11 +76,23 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+function getInningScore(cb1, innings) {
 
-  /*Code Here*/
+  let homeScore = 0;
+  let awayScore = 0;
 
+  for (let i = 1; i <= innings; i++) {
+
+    homeScore += cb1();
+    awayScore += cb1();
+
+  }
+
+  return {home: homeScore, away: awayScore}
+   
 }
+
+console.log(getInningScore(inning, 8));
 
 /* Task 4: 
 
@@ -103,8 +115,31 @@ and returns the score at each pont in the game, like so:
 Final Score: awayTeam - homeTeam */
 
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
-}
+function scoreboard(cb2, cb1, innings) {
+  
+  let awayTeam = 0;
+  let homeTeam = 0;
 
+  for (let i = 1; i <= innings; i++) {
 
+    awayTeam = cb2(cb1, i).away;
+    homeTeam = cb2(cb1, i).home;
+
+    if (i === 1) {
+
+      console.log(`${i}st inning: ${awayTeam} - ${homeTeam}`);
+
+    } else if (i === 2) {
+
+      console.log(`${i}nd inning: ${awayTeam} - ${homeTeam}`);
+
+    } else if (i === 3) {
+
+      console.log(`${i}rd inning: ${awayTeam} - ${homeTeam}`);
+    } else {
+   
+      console.log(`${i}th inning: ${awayTeam} - ${homeTeam}`)
+      
+  }
+
+console.log(scoreboard(getInningScore, inning, 9));

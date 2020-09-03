@@ -26,12 +26,13 @@ function processFirstItem(stringList, callback) {
 /* Task 1: `counterMaker`
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
- * 1. What is the difference between counter1 and counter2?
+ * 1. What is the difference between counter1 and counter2? Counter 1 uses a traditional function, while counter 2 uses a function experession. 
  * 
- * 2. Which of the two uses a closure? How can you tell? 
+ * 2. Which of the two uses a closure? How can you tell? counter1 and counter2 uses closure as the function has to reach outside of it's 'scope' in order to retreive data. However, it could also be said that counter1 uses closure as it is calling a function that exists outside of it's own function and retrieves data that way.
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? counter1
- *
+ *counter1 would be the prefered way and the most used code as it has no global variables, plus it nests a function within itself that provides for a deeper level of security.
+ counter2 would be preferable when you have a set code that is constantly being used throughout your script. This allows you to grab the function no matter where in your script you are.
 */
 
 // counter1 code
